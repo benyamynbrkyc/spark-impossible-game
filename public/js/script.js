@@ -13,12 +13,15 @@ new Vue({
   },
   methods: {
     provjeriInput(kombinacija) {
+      let brojevi = [];
       let ne_valja = false;
       kombinacija.forEach(broj => {
+        brojevi.push(broj);
         if (broj > 20 || broj < 1) {
           ne_valja = true;
         }
       });
+      if (new Set(brojevi).size !== kombinacija.length) ne_valja = true;
       if (ne_valja) return false;
       else return true;
     },
@@ -42,11 +45,15 @@ new Vue({
       if (
         this.provjeriInput(this.uNizIntova(this.player1_kombinacija)) == false
       )
-        return alert(`${this.player1_ime}: Brojevi moraju biti izmedju 1 i 20`);
+        return alert(
+          `${this.player1_ime}: Brojevi moraju biti izmedju 1 i 20 i ne smije biti duplikata.`
+        );
       if (
         this.provjeriInput(this.uNizIntova(this.player2_kombinacija)) == false
       )
-        return alert('Brojevi moraju biti izmedju 1 i 20');
+        return alert(
+          'Brojevi moraju biti izmedju 1 i 20 i ne smije biti duplikata.'
+        );
 
       if (
         regex.test(this.player2_kombinacija) &&
