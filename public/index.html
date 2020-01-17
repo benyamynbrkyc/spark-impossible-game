@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <br />
+    <div class="container-fluid">
+      <div class="jumbotron" style="background-color: #c3e2fe;">
+        <center>
+          <h1 class="display-4">
+            U ovoj igri nikada necete moci pogoditi dobitnu kombinaciju
+          </h1>
+        </center>
+      </div>
+
+      <div id="game_fields" class="container">
+        <form>
+          <div class="form-row">
+            <!-- PRVI IGRAC -->
+            <div class="col">
+              <label for="player1_ime">Igrac 1</label>
+              <input
+                v-if="show_form"
+                id="player1_ime"
+                type="text"
+                class="form-control"
+                placeholder="Vase ime"
+                v-model="player1_ime"
+              />
+              <p v-if="!show_form">{{ player1_ime }}</p>
+            </div>
+            <br />
+            <p></p>
+            <div class="col">
+              <label for="player1_kombinacija">Kombinacija</label>
+              <input
+                v-if="show_form"
+                id="player1_kombinacija"
+                type="text"
+                class="form-control"
+                placeholder="Kombinacija"
+                v-model="player1_kombinacija"
+              />
+              <p v-if="!show_form">
+                {{ player1_kombinacija.split(',').join(' | ') }}
+              </p>
+            </div>
+          </div>
+          <br />
+          <!-- DRUGI IGRAC -->
+          <div class="form-row">
+            <div class="col">
+              <label for="player2_ime">Igrac 2</label>
+              <input
+                v-if="show_form"
+                id="player2_ime"
+                type="text"
+                class="form-control"
+                placeholder="Vase ime"
+                v-model="player2_ime"
+              />
+              <p v-if="!show_form">{{ player2_ime }}</p>
+            </div>
+            <div class="col">
+              <label for="player2_kombinacija">Kombinacija</label>
+              <input
+                v-if="show_form"
+                id="player2_kombinacija"
+                type="text"
+                class="form-control"
+                placeholder="Kombinacija"
+                v-model="player2_kombinacija"
+              />
+              <p v-if="!show_form">
+                {{ player2_kombinacija.split(',').join(' | ') }}
+              </p>
+            </div>
+          </div>
+        </form>
+
+        <br />
+        <center>
+          <button
+            v-if="show_form"
+            v-on:click="start"
+            type="button"
+            class="btn btn-outline-dark"
+          >
+            Generisi Dobitnu Kombinaciju
+          </button>
+          <div v-if="!show_form" class="alert alert-primary" role="alert">
+            DOBITNA KOMBINACIJA:
+            <br />
+            {{dobitna_kombinacija}}
+          </div>
+          <p v-if="!show_form"></p>
+        </center>
+      </div>
+      <br />
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>
